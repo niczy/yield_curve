@@ -59,7 +59,7 @@ private:
 	double m_DF;
 
 public:
-	virtual double CashFlow(double Rate, int n, int m) = 0;
+	virtual double CashFlow(double Rate, int n, int m) {};
 
 	double PriceMC(int n, double NbScenarios, double Maturity, MonteCarlo &aMC,int type)				//n is object number in list // needs MonteCarlo to be friends
 	{
@@ -72,16 +72,13 @@ public:
 			for(int i = 0; i < Maturity; i++)			//m is number of cash flows
 			{
 				double mcrate = aMC.r[k][i];
-				if(type==0)
-				{
-					ptr = new CBond(0.0,0.0,0.0,0.0);
-					sum += ptr->CashFlow(mcrate, n, i) * aMC.dF[k][i];
+				if(type==0) {
+                                  ptr = new CBond(0.0,0.0,0.0,0.0);
 				}
-				else
-				{
-					ptr = new CCap(0.0,0.0,0.0,0.0);
-					sum += ptr->CashFlow(mcrate, n, i) * aMC.dF[k][i];
+				else {
+                                  ptr = new CCap(0.0,0.0,0.0,0.0);
 				}
+                                sum += ptr->CashFlow(mcrate, n, i) * aMC.dF[k][i];
 			}
 			sum2 += sum;
 		}
