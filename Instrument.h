@@ -1,8 +1,8 @@
 #pragma once
+#include "MonteCarlo.h"
+#include "TrinomialTree.h"
 class MonteCarlo;
 class CTrinomialTree;
-class CBond;
-class CCap;
 
 class CInstrument
 {
@@ -59,26 +59,20 @@ private:
 	double m_DF;
 
 public:
-	virtual double CashFlow(double Rate, int n, int m) {};
+	virtual double CashFlow(double Rate, int n, int m);
 
-	double PriceMC(int n, double NbScenarios, double Maturity, MonteCarlo &aMC,int type)				//n is object number in list // needs MonteCarlo to be friends
+	double PriceMC(int n, double NbScenarios, double Maturity, MonteCarlo &aMC)				
+          //n is object number in list // needs MonteCarlo to be friends
 	{
 		double sum(0);
 		double sum2(0);
-		CInstrument* ptr;
 		for(int k = 0; k < NbScenarios; k++)
 		{	
 			sum = 0;
 			for(int i = 0; i < Maturity; i++)			//m is number of cash flows
 			{
 				double mcrate = aMC.r[k][i];
-				if(type==0) {
-                                  ptr = new CBond(0.0,0.0,0.0,0.0);
-				}
-				else {
-                                  ptr = new CCap(0.0,0.0,0.0,0.0);
-				}
-                                sum += ptr->CashFlow(mcrate, n, i) * aMC.dF[k][i];
+                                sum += CashFlow(mcrate, n, i) * aMC.dF[k][i];
 			}
 			sum2 += sum;
 		}

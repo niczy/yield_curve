@@ -1,8 +1,12 @@
 // add delete test2.cpp : Defines the entry point for the console application.
 //
 #pragma once
+#include <iostream>
 #include "YieldCurve.h"
+#include "Instrument.h"
 
+
+using namespace std;
 class CBond : public CInstrument
 {
 	private:
@@ -40,7 +44,7 @@ class CBond : public CInstrument
 
 		cout.width(6);
 		cout<<"Number";
-		cout.width(10);
+                std::cout.width(10);
 		cout<<"Currency";
 		cout.width(10);
 		cout<<"Type";

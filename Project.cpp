@@ -83,7 +83,7 @@ int main()
     int monthL[] = {1, 2, 3, 6, 12};
     vector<vector<double> > XL(TOTAL_TIME), YL(TOTAL_TIME);
     string marketL;
-   	string inputFileNameL = "LIBOR.csv";
+    string inputFileNameL = "LIBOR.csv";
     
     // Read data
     ifstream infileL(inputFileNameL);

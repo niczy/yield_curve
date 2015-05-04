@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "Instrument.h"
+
 class CCap : public CInstrument  //: public Instrument      //NEW Cap Class
 {
 private:

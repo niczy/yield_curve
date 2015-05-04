@@ -1,4 +1,6 @@
 #pragma once
+#include "MonteCarlo.h"
+
 class MonteCarlo;
 
 class CBrownianMotion
